@@ -12,22 +12,18 @@ class WordsFinder:
         hi = {}
         for name in self.names:
             a = 0
-            with open(name, "r") as file:
-                words = list(file.read().translate(str.maketrans(' ', ' ', string.punctuation)).split())
-                for i in range(len(words)):
-                    if word.lower() == words[i].lower():
-                        a = i + 1
-                        break
-                hi[name] = a
+            for i in range(len(self.get_all_words()[name])):
+                if word.lower() == self.get_all_words()[name][i].lower():
+                    a = i + 1
+                    break
+            hi[name] = a
         return hi
     def count(self, word):
         hi = {}
         for name in self.names:
             a = 0
-            with open(name, "r") as file:
-                words = list(file.read().translate(str.maketrans(' ', ' ', string.punctuation)).split())
-                for i in range(len(words)):
-                    if word.lower() == words[i].lower():
-                        a += 1
-                hi[name] = a
+            for i in range(len(self.get_all_words()[name])):
+                 if word.lower() == self.get_all_words()[name][i].lower():
+                    a += 1
+            hi[name] = a
         return hi
